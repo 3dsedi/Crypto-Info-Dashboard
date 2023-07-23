@@ -1,56 +1,50 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
+const formatCurrency = (value) => {
+  if (value >= 1e9) {
+    return (value / 1e9).toFixed(2) + 'B';
+  } else if (value >= 1e6) {
+    return (value / 1e6).toFixed(2) + 'M';
+  } else if (value >= 1e3) {
+    return (value / 1e3).toFixed(2) + 'K';
+  }
+  return value;
+};
 
-export const BarGraph = ({ top3Cryptos }) => {
-//   const labels = top3Cryptos.map((crypto) => crypto.name);
-//   const data = top3Cryptos.map((crypto) => crypto.priceUsd);
-
-//   const chartData = {
-//     labels: labels,
-//     datasets: [
-//       {
-//         label: 'Crypto Prices',
-//         data: data,
-//         backgroundColor: 'rgba(75,192,192,0.6)',
-//         borderColor: 'rgba(75,192,192,1)',
-//         borderWidth: 1,
-//       },
-//     ],
-//   };
-
-//   const chartOptions = {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//         title: {
-//           display: true,
-//           text: 'Price (USD)',
-//           font: {
-//             size: 14,
-//           },
-//         },
-//       },
-//     },
-//   };
-const data = top3Cryptos.map((crypto) => ({
-    name: crypto.name,
-    priceUsd: parseFloat(crypto.priceUsd),
-  }));
+export const BarGraph = ({ cryptoData }) => {
+  
+  if (!cryptoData || cryptoData.length === 0) {
+    return (
+      <div className="section">
+        <div className="container">
+          <h2 className="text-center">Bar Graph</h2>
+          <p className="text-center">No data available</p>
+        </div>
+      </div>
+    );
+  }
 
   
+  
+
+  const data = cryptoData.map((crypto) => ({
+    name: crypto.symbol,
+    marketCap: parseFloat(crypto.marketCapUsd),
+  }));
+
   return (
-    <div className="section">
-      <div className="container">
-        <h2 className="text-center">Bar Graph</h2>
-        <div className="mx-auto" style={{ maxWidth: '600px' }}>
-          <BarChart width={600} height={400} data={data}>
+    <div className="section ">
+      <div className="container ">
+    
+        <div className="d-flex justify-content-center "> 
+          <BarChart width={800} height={400} data={data} margin={{ left: 50 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
+            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+            <YAxis tickFormatter={formatCurrency} />
+            <Tooltip formatter={formatCurrency} />
             <Legend />
-            <Bar dataKey="priceUsd" fill="#8884d8" />
+            <Bar dataKey="marketCap" fill="#8884d8" />
           </BarChart>
         </div>
       </div>

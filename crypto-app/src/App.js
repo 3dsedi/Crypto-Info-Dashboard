@@ -6,6 +6,7 @@ import { CryptoList } from './components/CryptoList';
 import { BarGraph } from './components/BarGraph';
 import { DonutChart } from './components/DonutChart';
 import Navbar from './components/Navbar';
+import './App.css'
 
 
 
@@ -26,8 +27,8 @@ const App = () => {
       });
   }, []);
 
-  const sortedCryptoList = cryptoList.sort((a, b) => b.priceUsd - a.priceUsd);
-  const top3Cryptos = sortedCryptoList.slice(0, 3);
+  const sortedCryptoList = cryptoList.sort((a, b) => a.rank - b.rank);
+  const top10Cryptos = sortedCryptoList.slice(0, 10);
 
   const handleChangeChart = (event) => {
     setSelectedChart(event.target.value);
@@ -40,19 +41,30 @@ const App = () => {
           <CryptoList cryptoList={cryptoList} />
         </Element>
         <div className="row justify-content-center mb-3">
-          <div className="col-auto">
-            <select className="form-select" value={selectedChart} onChange={handleChangeChart}>
-              <option value="bargraph">Bar Graph</option>
-              <option value="donutchart">Donut Chart</option>
-            </select>
-          </div>
+  <div className="col-auto">
+    <h2 className="text-center mb-4" style={{ fontSize: "2rem", color: "#5f6062" }}>
+      Market Capitalization of Top 10 Cryptocurrencies
+    </h2>
+  </div>
+  <div className="col-auto">
+    <select
+      className="form-select "
+      value={selectedChart}
+      onChange={handleChangeChart}
+    >
+      <option value="bargraph">Bar Graph</option>
+      <option value="donutchart">Donut Chart</option>
+    </select>
+  </div>
+</div>
+        <div className="container"> 
+          <Element name="barGraphSection">
+            {selectedChart === 'bargraph' && <BarGraph cryptoData={top10Cryptos} />}
+          </Element>
+          <Element name="donutChartSection">
+            {selectedChart === 'donutchart' && <DonutChart cryptoData={top10Cryptos} />}
+          </Element>
         </div>
-        <Element name="barGraphSection">
-          {selectedChart === 'bargraph' && <BarGraph top3Cryptos={top3Cryptos} />}
-        </Element>
-        <Element name="donutChartSection">
-          {selectedChart === 'donutchart' && <DonutChart cryptoList={cryptoList} />}
-        </Element>
       </div>
     </div>
   );
@@ -61,35 +73,4 @@ const App = () => {
 export default App;
 
 
-  // const cryptoList = [
-  //   {
-  //     name: 'Bitcoin',
-  //     priceUsd: '38000.00',
-  //     rank: 1,
-  //     explorer: 'https://example.com/bitcoin',
-  //   },
-  //   {
-  //     name: 'Ethereum',
-  //     priceUsd: '2500.00',
-  //     rank: 2,
-  //     explorer: 'https://example.com/ethereum',
-  //   },
-  //   {
-  //     name: 'Tether',
-  //     priceUsd: '1.0009018353009005',
-  //     rank: 3,
-  //     explorer: 'https://example.com/ethereum',
-  //   },
-  //   {
-  //     name: 'BNB',
-  //     priceUsd: '242.7980418588823',
-  //     rank: 4,
-  //     explorer: 'https://example.com/ethereum',
-  //   },
-  //   {
-  //     name: 'XRP',
-  //     priceUsd: '0.7726737263322052',
-  //     rank: 5,
-  //     explorer: 'https://example.com/ethereum',
-  //   },
-  // ];
+  
