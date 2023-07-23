@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test-database', [ApiController::class, 'fetchCryptoData']);
+// Route::get('/test-database', [ApiController::class, 'saveCryptoData']);
+Route::get('/cryptodata', [ApiController::class, 'fetchAndSaveCryptoData']);

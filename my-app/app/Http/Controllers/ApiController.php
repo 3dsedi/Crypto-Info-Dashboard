@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\CryptoData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\JsonResponse;
+use App\Models\CryptoData;
 
 class ApiController extends Controller
 {
-    public function fetchCryptodata()
+    public function fetchAndSaveCryptoData()
     {
         $response = Http::get('https://api.coincap.io/v2/assets');
 
         if ($response->successful()) {
-            $data = $response->json();
-
-            foreach ($data['data'] as $crypto) {
+            $data = $response->json()['data'];
+            return response()->json(['message' => 'Data fetched successfully', 'data' => $data]);
+            foreach ($data as $crypto) {
                 CryptoData::updateOrCreate(
                     ['id' => $crypto['id']],
                     [
@@ -34,11 +34,10 @@ class ApiController extends Controller
                     ]
                 );
             }
-
-
-            return response()->json(['message' => 'Data fetched and saved successfully']);
         }
 
         return response()->json(['message' => 'Failed to fetch data from API'], 500);
     }
 }
+
+//     
