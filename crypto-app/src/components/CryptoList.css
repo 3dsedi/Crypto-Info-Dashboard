@@ -1,28 +1,4 @@
-/* .pagination {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .pagination li {
-    display: inline;
-    margin-right: 5px;
-    cursor: pointer;
-    list-style: none;
-  }
-  
-  .pagination li.active {
-    font-weight: bold;
-  }
-  
-  .page-link {
-    color: #007bff;
-    border: 1px solid #007bff;
-    padding: 5px 10px;
-  }
-  
-  .page-link:hover {
-    color: #0056b3;
-    background-color: #f2f2f2;
-  }
-   */
+.select-menu {
+  width: 190px;
+
+}

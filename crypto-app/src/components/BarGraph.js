@@ -24,10 +24,6 @@ export const BarGraph = ({ cryptoData }) => {
       </div>
     );
   }
-
-  
-  
-
   const data = cryptoData.map((crypto) => ({
     name: crypto.symbol,
     marketCap: parseFloat(crypto.marketCapUsd),
