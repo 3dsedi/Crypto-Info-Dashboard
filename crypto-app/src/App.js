@@ -13,14 +13,15 @@ import './App.css'
 const App = () => {
   const [cryptoList, setCryptoList] = useState([]);
   const [selectedChart, setSelectedChart] = useState('bargraph');
+  const [apiMessage, setApiMessage] = useState('');
 
 
   useEffect(() => {
     axios.get('http://localhost:8000/cryptodata') 
       .then((response) => {
         const data = response.data.data;
-        console.log(data)
         setCryptoList(data);
+        setApiMessage(response.data.message);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -36,6 +37,9 @@ const App = () => {
   return (
     <div>
       <Navbar />
+      {/* <div className="mt-3">
+          <p className="text-center">{apiMessage}</p>
+        </div> */}
       <div className="container mt-4">
         <Element name="cryptosSection">
           <CryptoList cryptoList={cryptoList} />
