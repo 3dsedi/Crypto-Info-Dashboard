@@ -11,9 +11,8 @@ The application features a list of all cryptocurrencies, sortable by their rates
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies](#technologies)
-- [Screenshots](#screenshots)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Installation
 
@@ -34,18 +33,23 @@ composer install
 
 4. Set up the SQLite database:
 ```bash
-touch database/database.sqlite
+touch database/database.db
+```
+in my-app go to .env and change the path to your database file
+DB_DATABASE=\path\to\your\database\database.db
+```bash
 php artisan migrate
 ```
 
 6. Frontend Setup:
 Make sure you have Node.js and npm installed.
-Install frontend dependencies:
+Install frontend dependencies: in the root directory
 ```bash
 cd client
 npm install
 ```
 ## Usage
+In the root Directory
 Start the backend server:
 ```bash
 cd my-app
