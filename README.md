@@ -1,10 +1,8 @@
-# Fleetm8 Cryptocurrency Dashboard
-
-![App Screenshot](/path/to/screenshot.png)
+# Crypto Info Dashboard
 
 ## Description
 
-The Fleetm8 Cryptocurrency Dashboard is a web application that allows users to view real-time data for various cryptocurrencies. It fetches cryptocurrency data from the CoinCap API and stores it in a SQLite database. The data is then presented in a user-friendly interface built with React, JavaScript, Bootstrap, and Recharts.
+The Crypto Info Dashboard is a web application that allows users to view real-time data for various cryptocurrencies. It fetches cryptocurrency data from the CoinCap API and stores it in a SQLite database. The data is then presented in a user-friendly interface built with React, JavaScript, Bootstrap, and Recharts.
 
 The application features a list of all cryptocurrencies, sortable by their rates or prices in both ascending and descending order. Additionally, users can explore the Market Capitalization of the Top 10 Cryptocurrencies by USD in either bar graph or donut chart format.
 
