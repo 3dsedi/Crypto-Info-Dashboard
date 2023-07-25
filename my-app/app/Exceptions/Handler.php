@@ -4,6 +4,10 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Database\QueryException;
+use Symfony\Component\HttpFoundation\Response;
+
+
 
 class Handler extends ExceptionHandler
 {
@@ -27,4 +31,15 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    public function render($request, Throwable $exception)
+    {
+
+        if ($exception instanceof QueryException) {
+            return response()->json(['message' => 'An error occurred while fetching data from the database'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+
+        return parent::render($request, $exception);
+    }
+
 }

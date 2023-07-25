@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./CryptoList.css"; 
 import { Pagination } from "./Pagination";
 
 export const CryptoList = ({ cryptoList }) => {
@@ -46,7 +45,8 @@ export const CryptoList = ({ cryptoList }) => {
           <label htmlFor="sortCriteria" className="me-2">Sort by:</label>
           <select
             id="sortCriteria"
-            className="form-select select-menu" 
+            className="form-select " 
+            style={{ width: '190px'}}
             value={sortCriteria}
             onChange={handleSortChange}
           >

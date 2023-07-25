@@ -7,6 +7,7 @@ import { DonutChart } from "./components/DonutChart";
 import Navbar from "./components/Navbar";
 import "./App.css";
 import { Loading } from "./components/Loading";
+import { Footer } from "./components/Footer";
 
 const App = () => {
   const [cryptoList, setCryptoList] = useState([]);
@@ -37,33 +38,32 @@ const App = () => {
     <div>
       <Navbar />
       <div className="container mt-4">
+        <Element name="summarySection" className="my-4">
+          <h2
+            className="text-center mb-4 "
+            style={{ fontSize: "2rem", color: "#5f6062" }}
+          >
+            Welcome to Cryptocurrency Information!
+          </h2>
+          <p
+            className="text-center mb-4"
+            style={{ fontSize: "1.2rem", color: "#5f6062" }}
+          >
+            Here, you can explore the list of all cryptocurrencies and sort them
+            by price from high to low or low to high. Additionally, you can
+            compare the market capitalization of the top 10 highest ranking
+            cryptocurrencies in USD.
+          </p>
+        </Element>
         {loading ? (
-          <Loading /> 
+          <Loading />
         ) : (
           <>
-            <div className="section-border">
-              <Element name="summarySection" className="my-4">
-                <h2
-                  className="text-center mb-4 "
-                  style={{ fontSize: "2rem", color: "#5f6062" }}
-                >
-                  Welcome to Cryptocurrency Information!
-                </h2>
-                <p 
-                  className="text-center mb-4"
-                  style={{ fontSize: "1.2rem", color: "#5f6062" }}
-                >
-                  Here, you can explore the list of all cryptocurrencies and
-                  sort them by price from high to low or low to high.
-                  Additionally, you can compare the market capitalization of
-                  the top 10 highest ranking cryptocurrencies in USD.
-                </p>
-              </Element>
-              <hr style={{ borderTop: "2.5px solid #999", margin: "3rem 0" }} />
-              <Element name="cryptosSection">
-                <CryptoList cryptoList={cryptoList} />
-              </Element>
-            </div>
+            <hr style={{ borderTop: "2.5px solid #999", margin: "3rem 0" }} />
+            <Element name="cryptosSection">
+              <CryptoList cryptoList={cryptoList} />
+            </Element>
+
             <hr style={{ borderTop: "2.5px solid #999", margin: "3rem 0" }} />
             <div className="row justify-content-center mb-3">
               <div className="col-auto">
@@ -108,6 +108,8 @@ const App = () => {
           </>
         )}
       </div>
+      <hr style={{ borderTop: "2.5px solid #999", margin: "3rem 0" }} />
+      <Footer />
     </div>
   );
 };

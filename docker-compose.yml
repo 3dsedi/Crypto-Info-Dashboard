@@ -1,0 +1,37 @@
+version: "3"
+services:
+  backend:
+    build:
+      args:
+        user: sammy
+        uid: 1000    
+      context: ./my-app
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database    
+    networks:
+      - backend_network  
+
+  frontend:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    networks:
+      - backend_network
+
+  database:
+    image: busybox
+    volumes:
+      - ./my-app/database2/fleetm8.db:/var/lib/sqlite/fleetm8.db
+    networks:
+      - backend_network        
+
+volumes:
+  db_data:
+
+networks:
+  backend_network:
+    driver: bridge

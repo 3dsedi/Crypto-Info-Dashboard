@@ -16,8 +16,6 @@ class ApiController extends Controller
             if ($response->successful()) {
                 $data = $response->json()['data'];
 
-                return response()->json(['message' => 'Data fetched successfully', 'data' => $data]);
-
                 foreach ($data as $crypto) {
                     CryptoData::updateOrCreate(
                         ['id' => $crypto['id']],
@@ -34,10 +32,12 @@ class ApiController extends Controller
                         ]
                     );
                 }
+
+                return response()->json(['message' => 'Data fetched successfully', 'data' => $data]);
             } else {
                 $databaseData = $this->getDatabaseData();
                 if (!empty($databaseData)) {
-                    return response()->json(['message' => 'Using data from database', 'data' => $databaseData]);
+                    return response()->json(['message' => 'Using data from the database', 'data' => $databaseData]);
                 } else {
                     return response()->json(['message' => 'Failed to fetch data from API and no data available in the database'], 500);
                 }
@@ -57,3 +57,5 @@ class ApiController extends Controller
         return CryptoData::all()->toArray();
     }
 }
+
+
