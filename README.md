@@ -19,7 +19,7 @@ The application features a list of all cryptocurrencies, sortable by their rates
 
 1. Clone the repository:
 ```bash
-git clone https://https://github.com/3dsedi/new
+git clone https://github.com/3dsedi/new
 cd new
 ```
 
